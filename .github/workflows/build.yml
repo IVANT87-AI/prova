@@ -21,7 +21,11 @@ jobs:
           cache: gradle
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: actions/setup-android@v1
+        with:
+          api-level: 34
+          build-tools: 34.0.0
+          ndk: false
 
       - name: Permessi Gradle
         run: chmod +x android_speaker_id/gradlew
@@ -41,6 +45,7 @@ jobs:
         run: ./gradlew assembleDebug --stacktrace
         env:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false -Xmx4g"
+          ANDROID_HOME: /usr/local/lib/android/sdk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
