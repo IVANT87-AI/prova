@@ -20,10 +20,17 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
-      - name: Setup Android SDK manuale
+      - name: Scarica gradle-wrapper.jar
+        run: |
+          mkdir -p android_speaker_id/gradle/wrapper
+          curl -L \
+            "https://github.com/gradle/gradle/raw/v8.2.0/gradle/wrapper/gradle-wrapper.jar" \
+            -o android_speaker_id/gradle/wrapper/gradle-wrapper.jar
+          echo "gradle-wrapper.jar scaricato: $(ls -lh android_speaker_id/gradle/wrapper/)"
+
+      - name: Setup Android SDK
         run: |
           echo "ANDROID_HOME=/usr/local/lib/android/sdk" >> $GITHUB_ENV
-          echo "PATH=$PATH:/usr/local/lib/android/sdk/platform-tools" >> $GITHUB_ENV
           /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager \
             "platforms;android-34" \
             "build-tools;34.0.0" \
