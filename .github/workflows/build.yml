@@ -51,7 +51,7 @@ jobs:
 
       - name: Build APK Debug
         working-directory: android_speaker_id
-        run: ./gradlew assembleDebug --stacktrace--refresh-dependencies
+        run: ./gradlew assembleDebug --stacktrace --refresh-dependencies
         env:
           GRADLE_OPTS: "-Dorg.gradle.daemon=false -Xmx4g"
           ANDROID_HOME: /usr/local/lib/android/sdk
